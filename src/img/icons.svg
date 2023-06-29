@@ -1,9 +1,12 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
-<symbol id="action-against" viewBox="0 0 51 32">
-<path d="M0 0h50.939v32h-50.939v-32z"></path>
+<symbol id="icon-align-left" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M22.667 13.333h-18.667"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M28 8h-24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M28 18.667h-24"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M22.667 24h-18.667"></path>
 </symbol>
-<symbol id="bookshelf" viewBox="0 0 178 32">
+<symbol id="icon-bookshelf" viewBox="0 0 178 32">
 <path d="M22.176 8.533c0-4.731-3.497-7.406-9.545-7.406h-12.631v29.417h13.33c6.089 0 9.998-2.921 9.998-8.599 0-4.402-2.633-6.665-5.719-7.2v-0.082c2.427-0.823 4.567-2.51 4.567-6.13zM4.896 13.305v-8.023h7.858c2.921 0 4.526 1.44 4.526 4.032s-1.317 3.991-4.814 3.991h-7.57zM4.896 16.967h8.599c3.086 0 4.937 1.687 4.937 4.69 0 2.757-1.275 4.731-5.472 4.731h-8.064v-9.422z"></path>
 <path d="M35.89 31.161c-6.583 0-10.574-4.567-10.574-11.109s3.991-11.109 10.574-11.109c6.583 0 10.574 4.567 10.574 11.109s-3.991 11.109-10.574 11.109zM35.89 27.623c4.114 0 6.254-3.25 6.254-7.57 0-4.361-2.139-7.57-6.254-7.57s-6.254 3.209-6.254 7.57c0 4.32 2.139 7.57 6.254 7.57z"></path>
 <path d="M58.912 31.161c-6.583 0-10.574-4.567-10.574-11.109s3.991-11.109 10.574-11.109c6.583 0 10.574 4.567 10.574 11.109s-3.991 11.109-10.574 11.109zM58.912 27.623c4.114 0 6.254-3.25 6.254-7.57 0-4.361-2.139-7.57-6.254-7.57s-6.254 3.209-6.254 7.57c0 4.32 2.139 7.57 6.254 7.57z"></path>
@@ -14,36 +17,12 @@
 <path d="M157.531 1.127v29.417h4.361v-29.417h-4.361z"></path>
 <path d="M176.003 4.665v-3.538c-0.864-0.165-1.81-0.288-2.88-0.288-3.456 0-5.349 1.563-5.349 6.007v2.674h-3.003v3.538h3.003v17.486h4.361v-17.486h3.867v-3.538h-3.867v-2.304c0-2.386 1.070-2.674 3.867-2.551z"></path>
 </symbol>
-<symbol id="international-medical" viewBox="0 0 118 32">
-<path d="M0 0h117.943v32h-117.943v-32z"></path>
-</symbol>
-<symbol id="logo" viewBox="0 0 32 32">
+<symbol id="icon-logo" viewBox="0 0 32 32">
 <path fill="#f6f6f6" style="fill: var(--color1, #f6f6f6)" d="M0 0l16.343 16.171 15.657 15.829v-32h-32z"></path>
 <path fill="#f6f6f6" style="fill: var(--color1, #f6f6f6)" d="M4.457 4.229l11.943 11.829 11.257 11.486h-23.2v-23.314z"></path>
 <path fill="#4f2ee8" style="fill: var(--color2, #4f2ee8)" d="M27.733 27.618l-11.943-11.829-11.257-11.486h23.2v23.314z"></path>
 <path fill="#4f2ee8" style="fill: var(--color2, #4f2ee8)" d="M9.257 9.029l13.6 13.6h-13.6v-13.6z"></path>
 <path fill="#f6f6f6" style="fill: var(--color1, #f6f6f6)" d="M9.257 9.029l13.6 13.6v-13.6h-13.6z"></path>
-</symbol>
-<symbol id="medicin-sans" viewBox="0 0 91 32">
-<path d="M0 0h90.553v32h-90.553v-32z"></path>
-</symbol>
-<symbol id="project-hope" viewBox="0 0 64 32">
-<path d="M0 0h64v32h-64v-32z"></path>
-</symbol>
-<symbol id="razom" viewBox="0 0 96 32">
-<path d="M0 0h96v32h-96v-32z"></path>
-</symbol>
-<symbol id="save-children" viewBox="0 0 145 32">
-<path d="M0 0h144.485v32h-144.485v-32z"></path>
-</symbol>
-<symbol id="sergii-prutyla" viewBox="0 0 96 32">
-<path d="M0 0h96v32h-96v-32z"></path>
-</symbol>
-<symbol id="united24" viewBox="0 0 318 32">
-<path d="M0 0h317.867v32h-317.867v-32z"></path>
-</symbol>
-<symbol id="world-vision" viewBox="0 0 66 32">
-<path d="M0 0h66.462v32h-66.462v-32z"></path>
 </symbol>
 </defs>
 </svg>

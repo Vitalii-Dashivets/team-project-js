@@ -1,8 +1,30 @@
 .header {
-  padding: 20px 0;
-}
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  margin-left: auto;
+  margin-right: auto;
 
-.nav-list {
+  padding: 18px 20px;
+  border: 1px solid black;
+  height: 64px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.nav {
+  display: flex;
+  align-items: center;
+}
+.header-logo {
+  width: 24px;
+  height: 24px;
+}
+.header-logo-text {
+  max-width: 77px;
+  height: 13.2px;
+}
+/* .nav-list {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -18,4 +40,4 @@
 .nav-link:hover,
 .nav-link:focus {
   color: #747bff;
-}
+} */
