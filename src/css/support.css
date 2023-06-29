@@ -1,4 +1,22 @@
+.support {
+  height: 352px;
+  background-color: var(--blue);
+  border-radius: 16px;
+  background-image: radial-gradient(
+    circle at top,
+    var(--blue) 0%,
+    var(--white) 120%
+  );
+}
+
 .support-images {
   color: blue;
   filter: grayscale() invert(1);
+}
+.support-title {
+  font-weight: 700;
+  font-size: 28px;
+}
+.support-gerb-span {
+  display: inline-block;
 }
