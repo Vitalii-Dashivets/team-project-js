@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla App Template</title>
     
-    <script type="module" crossorigin src="/team-project-js/assets/index-b6c7e4b3.js"></script>
-    <link rel="stylesheet" href="/team-project-js/assets/index-dabb621f.css">
+    <script type="module" crossorigin src="/team-project-js/assets/index-e707bcac.js"></script>
+    <link rel="stylesheet" href="/team-project-js/assets/index-12067f5e.css">
   </head>
   <body>
     <header class="header container">
@@ -36,23 +36,27 @@
         <ul class="categories-list"></ul>
       </section>
 
-      <section class="support">
+      <section class="support container">
+        <h2 class="support-title">Support Ukraine</h2>
+        <span class="support-gerb-span"><svg class="header-gerb">
+          <use href="/team-project-js/assets/icons-214e029d.svg#icon-gerb"></use>
+        </svg><span>
         <ul class="support-list">
-          <li class="support-item">
-            <!-- <a
-            class="support-link"
-            href=""
-            target="_blank"
-            rel="noreferrer noopener nofollow"
-          >
-            <img class="support-images" src="./img/1.png" alt="" />
-          </a> -->
-          </li>
+          <li class="support-item"></li>
         </ul>
       </section>
       <section class="books">
         <ul class="books-list"></ul>
       </section>
+      <form>
+        <label>Name</label>
+        <input type="text" name="email">
+        <label>Password</label>
+        <input type="text" name="password">
+        <button type="submit">Submit</button>
+        <button type="button" data-action="signup">Sign up</button>
+        <button type="button" data-action="signin">Sign in</button>
+      </form>
     </main>
     <!-- Loads the specified .html file -->
 
