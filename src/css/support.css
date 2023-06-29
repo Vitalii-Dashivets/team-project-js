@@ -1,0 +1,4 @@
+.support-images {
+  color: blue;
+  filter: grayscale() invert(1);
+}

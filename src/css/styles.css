@@ -8,8 +8,9 @@
 @import url('./fonts/style-font.css');
 @import url('./base.css');
 
-/* @import url('./header.css');
-@import url('./hero.css');
+@import url('./header.css');
+@import url('./support.css');
+/*@import url('./hero.css');
 @import url('./advantages.css');
 @import url('./unique.css');
 @import url('./about.css');
