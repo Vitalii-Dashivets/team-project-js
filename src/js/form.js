@@ -5,7 +5,7 @@ import { getFirestore, getDocs } from 'firebase/firestore';
 import {  collection, addDoc } from "firebase/firestore"; 
 import { getAuth, createUserWithEmailAndPassword ,signInWithEmailAndPassword} from "firebase/auth";
 import { getDatabase, ref, set,child, get } from "firebase/database";
-
+import {  setPersistence,  browserSessionPersistence } from "firebase/auth";
 //  const firebase = require('firebase');
 //  const firebaseui = require('firebaseui');
 
@@ -21,7 +21,7 @@ const btnUp = document.querySelector("button[data-action=signup]");
 const btnIn = document.querySelector("button[data-action=signin]");
 const form = document.querySelector(".form");
 const formBtn = document.querySelector("#formBtn");
-
+const user = document.querySelector(".user");
 let statusAuth = "signup";
 btnUp.style.color = 'blue';
 btnUp.style.textDecoration = 'underline';
@@ -38,8 +38,10 @@ const dataUser = {
     authType: statusAuth,
     data: []
 }
-const newData = ['mango', 'poly', 'ajax', 'dinamo'];
 
+
+const newData = ['mango', 'poly', 'ajax', 'dinamo'];
+console.log(dataUser);
 function onBtnInSelect() {
     if (statusAuth === 'signin') {
         return;
@@ -127,6 +129,8 @@ function onFormSubmit(event) {
       console.log(user.uid);
       dataUser.userId = user.uid;
       console.log(dataUser);
+      user.textContent = `${dataUser.email}`;
+      console.log(user.textContent);
       readUserData(dataUser.userId);
     // ...
   })
@@ -184,4 +188,22 @@ get(child(dbRef, `users/${userId}`)).then((snapshot) => {
 });
 
 }
+
+ const auth = getAuth();
+setPersistence(auth, browserSessionPersistence)
+  .then(() => {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+      
+    return signInWithEmailAndPassword(auth, email, password);
+  })
+  .catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
 export { dataUser };
