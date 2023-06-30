@@ -1,6 +1,7 @@
 
 // import { getCities } from "./firebase";
 import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 const btnUp = document.querySelector("button[data-action=signup]");
 const btnIn = document.querySelector("button[data-action=signin]");
@@ -73,7 +74,8 @@ function onFormSubmit(event) {
   appId: "1:729076020797:web:e3a2da2c14a169a281dc54"
 };
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 // const auth = getAuth();
 createUserWithEmailAndPassword(auth, dataUser.email,dataUser.password)
   .then((userCredential) => {
