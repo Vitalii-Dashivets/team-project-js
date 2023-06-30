@@ -188,8 +188,8 @@ get(child(dbRef, `users/${userId}`)).then((snapshot) => {
 });
 
 }
-
- const auth = getAuth();
+const app = initializeApp(firebaseConfig);
+ const auth = getAuth(app);
 setPersistence(auth, browserSessionPersistence)
   .then(() => {
     // Existing and future Auth states are now persisted in the current
