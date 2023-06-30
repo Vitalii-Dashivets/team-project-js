@@ -1,15 +1,25 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, getDocs } from 'firebase/firestore';
-
+import { collection, addDoc } from 'firebase/firestore';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { signOut } from 'firebase/auth';
+import {  signOut } from "firebase/auth";
 import { getDatabase, ref, set, child, get } from 'firebase/database';
 import { setPersistence, browserSessionPersistence } from 'firebase/auth';
+//  const firebase = require('firebase');
+//  const firebaseui = require('firebaseui');
 
+//  const ui = new firebaseui.auth.AuthUI(firebase.auth());
+// ui.start('#firebaseui-auth-container', {
+//   signInOptions: [
+//     firebase.auth.EmailAuthProvider.PROVIDER_ID
+//   ],
+//   // Other config options...
+// });
+// import { getDatabase } from "firebase/database";
 const btnUp = document.querySelector('button[data-action=signup]');
 const btnIn = document.querySelector('button[data-action=signin]');
 const btnLogout = document.querySelector('button[data-action=logout]');
@@ -74,6 +84,8 @@ const firebaseConfig = {
 
 function onFormSubmit(event) {
   event.preventDefault();
+  const date = new Date();
+  // dataUser.userId = date.getTime();
   dataUser.name = form.name.value;
   dataUser.email = form.email.value;
   dataUser.password = form.password.value;
@@ -85,6 +97,7 @@ function onFormSubmit(event) {
   form.name.value = '';
   form.email.value = '';
   form.password.value = '';
+  // getCities();
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -97,7 +110,9 @@ function onFormSubmit(event) {
         // Signed in
 
         const user = userCredential.user;
+        console.log(user.uid);
         dataUser.userId = user.uid;
+        console.log(dataUser);
         // ...
       })
       .catch(error => {
@@ -129,12 +144,17 @@ function onFormSubmit(event) {
         alert(errorMessage);
       });
   }
+
+  // setTimeout(() => {
+  //     updateUserData(newData,dataUser.userId);
+  // },8000)
 }
 function updateUserData(array, userId) {
   const db = getDatabase();
   return update(ref(db, 'users/' + userId), {
     data: array,
     username: 'User',
+    // profile_picture : imageUrl
   });
 }
 
@@ -145,6 +165,7 @@ function writeUserData({ userId, name, email, password, data }) {
     email: email,
     password: password,
     data: data,
+    // profile_picture : imageUrl
   });
 }
 
@@ -165,32 +186,33 @@ function readUserData(userId) {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 setPersistence(auth, browserSessionPersistence)
-  .then(() => {
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
-
-    signInWithEmailAndPassword(auth, email, password);
-    // Signed in
-
-    //         });
-  })
-  .catch(error => {
+    .then(() => {
+        // Existing and future Auth states are now persisted in the current
+        // session only. Closing the window would clear any existing state even
+        // if a user forgets to sign out.
+        // ...
+        // New sign-in will be persisted with session persistence.
+        
+        signInWithEmailAndPassword(auth, email, password);
+            // Signed in 
+            
+//         });
+    })
+  .catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
   });
 
+
+
+
 function onLogout() {
-  const auth = getAuth();
-  signOut(auth)
-    .then(() => {
-      // Sign-out successful.
-    })
-    .catch(error => {
-      // An error happened.
-    });
-}
+      const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
+  }
 export { dataUser };
