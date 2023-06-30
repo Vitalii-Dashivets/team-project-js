@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+import {  signOut } from "firebase/auth";
 import { getDatabase, ref, set, child, get } from 'firebase/database';
 import { setPersistence, browserSessionPersistence } from 'firebase/auth';
 //  const firebase = require('firebase');
@@ -22,6 +23,7 @@ import { setPersistence, browserSessionPersistence } from 'firebase/auth';
 // import { getDatabase } from "firebase/database";
 const btnUp = document.querySelector('button[data-action=signup]');
 const btnIn = document.querySelector('button[data-action=signin]');
+const btnLogout = document.querySelector('button[data-action=logout]');
 const form = document.querySelector('.form');
 const formBtn = document.querySelector('#formBtn');
 const userP = document.querySelector('.user');
@@ -32,6 +34,7 @@ btnUp.style.textDecoration = 'underline';
 form.addEventListener('submit', onFormSubmit);
 btnUp.addEventListener('click', onBtnUpSelect);
 btnIn.addEventListener('click', onBtnInSelect);
+btnLogout.addEventListener('click', onLogout);
 
 const dataUser = {
   userId: '',
@@ -205,4 +208,15 @@ setPersistence(auth, browserSessionPersistence)
     const errorMessage = error.message;
   });
 
+
+
+
+function onLogout() {
+      const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
+  }
 export { dataUser };
