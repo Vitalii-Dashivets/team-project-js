@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+// import { getCities } from "./firebase";
+>>>>>>> Stashed changes
 import { initializeApp } from 'firebase/app';
 import { getFirestore, getDocs } from 'firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
@@ -6,7 +10,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+<<<<<<< Updated upstream
 import {  signOut } from "firebase/auth";
+=======
+>>>>>>> Stashed changes
 import { getDatabase, ref, set, child, get } from 'firebase/database';
 import { setPersistence, browserSessionPersistence } from 'firebase/auth';
 //  const firebase = require('firebase');
@@ -22,10 +29,16 @@ import { setPersistence, browserSessionPersistence } from 'firebase/auth';
 // import { getDatabase } from "firebase/database";
 const btnUp = document.querySelector('button[data-action=signup]');
 const btnIn = document.querySelector('button[data-action=signin]');
+<<<<<<< Updated upstream
 const btnLogout = document.querySelector('button[data-action=logout]');
 const form = document.querySelector('.form');
 const formBtn = document.querySelector('#formBtn');
 const userP = document.querySelector('.user');
+=======
+const form = document.querySelector('.form');
+const formBtn = document.querySelector('#formBtn');
+const user = document.querySelector('.user');
+>>>>>>> Stashed changes
 let statusAuth = 'signup';
 btnUp.style.color = 'blue';
 btnUp.style.textDecoration = 'underline';
@@ -129,11 +142,16 @@ function onFormSubmit(event) {
         console.log(user.uid);
         dataUser.userId = user.uid;
         console.log(dataUser);
+<<<<<<< Updated upstream
         userP.textContent = `User: ${dataUser.email} ID: ${dataUser.userId}`;
 
         setTimeout(() => {
           writeUserData(dataUser);
         }, 10000);
+=======
+        user.textContent = `${dataUser.email}`;
+        console.log(user.textContent);
+>>>>>>> Stashed changes
         readUserData(dataUser.userId);
         // ...
       })
@@ -144,6 +162,7 @@ function onFormSubmit(event) {
         alert(errorMessage);
       });
   }
+<<<<<<< Updated upstream
 
   // setTimeout(() => {
   //     updateUserData(newData,dataUser.userId);
@@ -158,6 +177,24 @@ function updateUserData(array, userId) {
   });
 }
 
+=======
+  setTimeout(() => {
+    writeUserData(dataUser);
+  }, 10000);
+  // setTimeout(() => {
+  //     updateUserData(newData,dataUser.userId);
+  // },8000)
+}
+function updateUserData(array, userId) {
+  const db = getDatabase();
+  return update(ref(db, 'users/' + userId), {
+    data: array,
+    username: 'User',
+    // profile_picture : imageUrl
+  });
+}
+
+>>>>>>> Stashed changes
 function writeUserData({ userId, name, email, password, data }) {
   const db = getDatabase();
   set(ref(db, 'users/' + userId), {
@@ -186,6 +223,7 @@ function readUserData(userId) {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 setPersistence(auth, browserSessionPersistence)
+<<<<<<< Updated upstream
     .then(() => {
         // Existing and future Auth states are now persisted in the current
         // session only. Closing the window would clear any existing state even
@@ -199,11 +237,24 @@ setPersistence(auth, browserSessionPersistence)
 //         });
     })
   .catch((error) => {
+=======
+  .then(() => {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+
+    return signInWithEmailAndPassword(auth, email, password);
+  })
+  .catch(error => {
+>>>>>>> Stashed changes
     // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
   });
 
+<<<<<<< Updated upstream
 
 
 
@@ -215,4 +266,6 @@ signOut(auth).then(() => {
   // An error happened.
 });
   }
+=======
+>>>>>>> Stashed changes
 export { dataUser };
