@@ -1,4 +1,3 @@
-// import { getCities } from "./firebase";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, getDocs } from 'firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
