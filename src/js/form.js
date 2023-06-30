@@ -1,8 +1,22 @@
 
 // import { getCities } from "./firebase";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, getDocs } from 'firebase/firestore';
+import {  collection, addDoc } from "firebase/firestore"; 
+import { getAuth, createUserWithEmailAndPassword ,signInWithEmailAndPassword} from "firebase/auth";
+import { getDatabase, ref, set,child, get } from "firebase/database";
+
+//  const firebase = require('firebase');
+//  const firebaseui = require('firebaseui');
+
+//  const ui = new firebaseui.auth.AuthUI(firebase.auth());
+// ui.start('#firebaseui-auth-container', {
+//   signInOptions: [
+//     firebase.auth.EmailAuthProvider.PROVIDER_ID
+//   ],
+//   // Other config options...
+// });
+// import { getDatabase } from "firebase/database";
 const btnUp = document.querySelector("button[data-action=signup]");
 const btnIn = document.querySelector("button[data-action=signin]");
 const form = document.querySelector(".form");
@@ -17,11 +31,14 @@ btnUp.addEventListener('click', onBtnUpSelect);
 btnIn.addEventListener('click', onBtnInSelect);
 
 const dataUser = {
+    userId: '',
     name:'',
     email: '',
     password: '',
     authType: statusAuth,
+    data: []
 }
+const newData = ['mango', 'poly', 'ajax', 'dinamo'];
 
 function onBtnInSelect() {
     if (statusAuth === 'signin') {
@@ -51,12 +68,26 @@ function onBtnUpSelect() {
 
 console.log(form);
 
+const firebaseConfig = {
+  apiKey: "AIzaSyAWL009d3fIg7FDNeFa1MpQ8vcCju1UWEQ",
+  authDomain: "project-js-fson82.firebaseapp.com",
+  projectId: "project-js-fson82",
+  storageBucket: "project-js-fson82.appspot.com",
+  messagingSenderId: "729076020797",
+  appId: "1:729076020797:web:e3a2da2c14a169a281dc54"
+};
+
+
+
 function onFormSubmit(event) {
     event.preventDefault();
+    const date = new Date();
+    // dataUser.userId = date.getTime();
     dataUser.name = form.name.value;
     dataUser.email = form.email.value;
     dataUser.password = form.password.value;
     dataUser.authType = statusAuth;
+    dataUser.data = [2, 4, 5, 7, 8, 9];
     console.log(form.email.value);
     console.log(form.password.value);
     console.log(dataUser);
@@ -65,30 +96,90 @@ function onFormSubmit(event) {
     form.password.value = '';
     // getCities();
 
-    const firebaseConfig = {
-  apiKey: "AIzaSyAWL009d3fIg7FDNeFa1MpQ8vcCju1UWEQ",
-  authDomain: "project-js-fson82.firebaseapp.com",
-  projectId: "project-js-fson82",
-  storageBucket: "project-js-fson82.appspot.com",
-  messagingSenderId: "729076020797",
-  appId: "1:729076020797:web:e3a2da2c14a169a281dc54"
-};
-const app = initializeApp(firebaseConfig);
+    
+    const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-// const auth = getAuth();
-createUserWithEmailAndPassword(auth, dataUser.email,dataUser.password)
+    const database = getDatabase();
+
+    if (statusAuth === "signup") {
+        createUserWithEmailAndPassword(auth, dataUser.email, dataUser.password)
   .then((userCredential) => {
     // Signed in 
-    const user = userCredential.user;
+   
+      const user = userCredential.user;
+      console.log(user.uid);
+      dataUser.userId = user.uid;
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
-    const errorMessage = error.message;
+      const errorMessage = error.message;
+      alert(errorMessage);
     // ..
   });
+    } else if (statusAuth === "signin") {
+        signInWithEmailAndPassword(auth, dataUser.email, dataUser.password)
+  .then((userCredential) => {
+    // Signed in 
+      const user = userCredential.user;
+      console.log(user.uid);
+      dataUser.userId = user.uid;
+      readUserData(dataUser.userId);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+      const errorMessage = error.message;
+        console.log(errorMessage);
+      alert(errorMessage);
+    
+  });
+    }
+    setTimeout(() => {
+        writeUserData(dataUser);
+    },3000)
+    setTimeout(() => {
+        updateUserData(newData,dataUser.userId);
+    },8000)
 
+    
+
+
+}
+function updateUserData(array,userId) {
+    const db = getDatabase();
+  update(ref(db, 'users/' + userId), {
+      
+      data: array,
+      username: 'User'
+    // profile_picture : imageUrl
+  });
+} 
+
+function writeUserData({ userId, name, email, password,data }) {
+  const db = getDatabase();
+  set(ref(db, 'users/' + userId), {
+      username: name,
+      email: email,
+      password: password,
+      data: data
+    // profile_picture : imageUrl
+  });
+    
+}
+   
+function readUserData(userId) {
+    const dbRef = ref(getDatabase());
+get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+  if (snapshot.exists()) {
+    console.log(snapshot.val());
+  } else {
+    console.log("No data available");
+  }
+}).catch((error) => {
+  console.error(error);
+});
 
 }
 export { dataUser };
