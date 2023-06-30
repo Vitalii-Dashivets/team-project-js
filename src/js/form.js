@@ -120,7 +120,7 @@ function onFormSubmit(event) {
       .then(userCredential => {
         // Signed in
         const user = userCredential.user;
-        console.log(user.uid);
+        // console.log(user.uid);
         dataUser.userId = user.uid;
         console.log(dataUser);
         userP.textContent = `User: ${dataUser.email} ID: ${dataUser.userId}`;
@@ -165,13 +165,15 @@ function readUserData(userId) {
     });
 }
 
-// function updateUserData(array, userId) {
-//   const db = getDatabase();
-//   return update(ref(db, 'users/' + userId), {
-//     data: array,
-//     username: 'User',
-//   });
-// }
+function updateUserData({ array, userId }) {
+  const db = getDatabase();
+  const postData = array;
+
+  const updates = {};
+  updates['users/' + userId + '/data/'] = postData;
+  console.log('updates: ', updates);
+  return update(ref(db), updates);
+}
 
 //  test update // A post entry
 function writeNewPost({ uid, username }) {
@@ -222,9 +224,13 @@ setPersistence(auth, browserSessionPersistence)
 function onLogout() {
   const auth = getAuth();
   console.log('dataUser to: ', dataUser);
-  writeNewPost({
-    uid: dataUser.userId,
-    username: dataUser.name,
+  // writeNewPost({
+  //   uid: dataUser.userId,
+  //   username: dataUser.name,
+  // });
+  updateUserData({
+    userId: dataUser.userId,
+    array: newData,
   });
   signOut(auth)
     .then(() => {
