@@ -110,6 +110,7 @@ function onFormSubmit(event) {
       const user = userCredential.user;
       console.log(user.uid);
       dataUser.userId = user.uid;
+      console.log(dataUser);
     // ...
   })
   .catch((error) => {
@@ -125,6 +126,7 @@ function onFormSubmit(event) {
       const user = userCredential.user;
       console.log(user.uid);
       dataUser.userId = user.uid;
+      console.log(dataUser);
       readUserData(dataUser.userId);
     // ...
   })
@@ -138,10 +140,10 @@ function onFormSubmit(event) {
     }
     setTimeout(() => {
         writeUserData(dataUser);
-    },3000)
-    setTimeout(() => {
-        updateUserData(newData,dataUser.userId);
-    },8000)
+    },5000)
+    // setTimeout(() => {
+    //     updateUserData(newData,dataUser.userId);
+    // },8000)
 
     
 
@@ -149,7 +151,7 @@ function onFormSubmit(event) {
 }
 function updateUserData(array,userId) {
     const db = getDatabase();
-  update(ref(db, 'users/' + userId), {
+  return update(ref(db, 'users/' + userId), {
       
       data: array,
       username: 'User'
@@ -159,7 +161,7 @@ function updateUserData(array,userId) {
 
 function writeUserData({ userId, name, email, password,data }) {
   const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
+  set(ref(db,'users/' + userId), {
       username: name,
       email: email,
       password: password,
