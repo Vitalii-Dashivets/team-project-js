@@ -131,6 +131,10 @@ function onFormSubmit(event) {
       console.log(dataUser);
       user.textContent = `${dataUser.email}`;
       console.log(user.textContent);
+
+      setTimeout(() => {
+        writeUserData(dataUser);
+    },10000)
       readUserData(dataUser.userId);
     // ...
   })
@@ -142,9 +146,7 @@ function onFormSubmit(event) {
     
   });
     }
-    setTimeout(() => {
-        writeUserData(dataUser);
-    },5000)
+    
     // setTimeout(() => {
     //     updateUserData(newData,dataUser.userId);
     // },8000)
@@ -191,15 +193,21 @@ get(child(dbRef, `users/${userId}`)).then((snapshot) => {
 const app = initializeApp(firebaseConfig);
  const auth = getAuth(app);
 setPersistence(auth, browserSessionPersistence)
-  .then(() => {
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
-      
-    return signInWithEmailAndPassword(auth, email, password);
-  })
+    .then(() => {
+        // Existing and future Auth states are now persisted in the current
+        // session only. Closing the window would clear any existing state even
+        // if a user forgets to sign out.
+        // ...
+        // New sign-in will be persisted with session persistence.
+        console.log(browserSessionPersistence);
+        signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user.uid);
+            dataUser.userId = user.uid;
+            console.log(dataUser);
+        });
+    })
   .catch((error) => {
     // Handle Errors here.
     const errorCode = error.code;
