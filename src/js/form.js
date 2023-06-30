@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, getDocs } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 import {
   getAuth,
@@ -7,7 +7,16 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { signOut } from 'firebase/auth';
-import { getDatabase, ref, set, child, get } from 'firebase/database';
+// test update + push, update
+import {
+  getDatabase,
+  ref,
+  set,
+  child,
+  get,
+  push,
+  update,
+} from 'firebase/database';
 import { setPersistence, browserSessionPersistence } from 'firebase/auth';
 
 const btnUp = document.querySelector('button[data-action=signup]');
@@ -35,7 +44,7 @@ const dataUser = {
 };
 
 const newData = ['mango', 'poly', 'ajax', 'dinamo'];
-console.log(dataUser);
+// console.log(dataUser);
 function onBtnInSelect() {
   if (statusAuth === 'signin') {
     return;
@@ -61,7 +70,7 @@ function onBtnUpSelect() {
   btnIn.style.textDecoration = 'none';
 }
 
-console.log(form);
+// console.log(form);
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAWL009d3fIg7FDNeFa1MpQ8vcCju1UWEQ',
@@ -79,9 +88,9 @@ function onFormSubmit(event) {
   dataUser.password = form.password.value;
   dataUser.authType = statusAuth;
   dataUser.data = [2, 4, 5, 7, 8, 9];
-  console.log(form.email.value);
-  console.log(form.password.value);
-  console.log(dataUser);
+  // console.log(form.email.value);
+  // console.log(form.password.value);
+  // console.log(dataUser);
   form.name.value = '';
   form.email.value = '';
   form.password.value = '';
@@ -125,17 +134,10 @@ function onFormSubmit(event) {
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
+        console.log('errorCode:', errorCode, ' ', errorMessage);
         alert(errorMessage);
       });
   }
-}
-function updateUserData(array, userId) {
-  const db = getDatabase();
-  return update(ref(db, 'users/' + userId), {
-    data: array,
-    username: 'User',
-  });
 }
 
 function writeUserData({ userId, name, email, password, data }) {
@@ -162,6 +164,40 @@ function readUserData(userId) {
       console.error(error);
     });
 }
+
+// function updateUserData(array, userId) {
+//   const db = getDatabase();
+//   return update(ref(db, 'users/' + userId), {
+//     data: array,
+//     username: 'User',
+//   });
+// }
+
+//  test update // A post entry
+function writeNewPost({ uid, username }) {
+  const db = getDatabase();
+
+  // A post entry.
+  const postData = {
+    author: username,
+    uid: uid,
+    body: 'body',
+    title: 'title',
+    authorPic: 'picture',
+  };
+  // Get a key for a new Post.
+  const newPostKey = push(child(ref(db), 'posts')).key;
+  console.log('newPostKey', newPostKey);
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  const updates = {};
+  // updates['/posts/' + newPostKey] = postData;
+  // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+  updates['users/' + uid + '/data/'] = postData;
+  //
+  return update(ref(db), updates);
+}
+//  test update
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 setPersistence(auth, browserSessionPersistence)
@@ -185,6 +221,11 @@ setPersistence(auth, browserSessionPersistence)
 
 function onLogout() {
   const auth = getAuth();
+  console.log('dataUser to: ', dataUser);
+  writeNewPost({
+    uid: dataUser.userId,
+    username: dataUser.name,
+  });
   signOut(auth)
     .then(() => {
       // Sign-out successful.
