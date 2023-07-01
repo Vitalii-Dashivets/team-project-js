@@ -10,7 +10,11 @@
 
 @import url('./header.css');
 @import url('./support.css');
+<<<<<<< Updated upstream
 @import url('./modal-auth.css');
+=======
+@import url('./modal-aurh.css');
+>>>>>>> Stashed changes
 /*@import url('./hero.css');
 @import url('./advantages.css');
 @import url('./unique.css');
