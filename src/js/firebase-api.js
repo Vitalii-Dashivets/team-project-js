@@ -1,5 +1,5 @@
 import {  refsBtn } from "./firebase-main";
-import { getDatabase, ref, set, child, get } from 'firebase/database'; 
+import { getDatabase, ref, set, child, get, update } from 'firebase/database'; 
 import { getAuth,signOut} from 'firebase/auth';
 const dataUser = {
   userId: '',
@@ -75,8 +75,11 @@ function readUserData(userId) {
         dataUser.email = email;
         dataUser.username = username;
         dataUser.shoppingList = shoppingList;
-       
-        
+        if (dataUser.shoppingList === '') {
+          dataUser.shoppingList = [];
+        }
+          
+                
       } else {
         console.log('No data available');
       }
@@ -84,6 +87,16 @@ function readUserData(userId) {
     .catch(error => {
       console.error(error);
     });
+}
+
+
+function updateUserData({ shoppingList, userId }) {
+  const db = getDatabase();
+  const postData = shoppingList;
+  const updates = {};
+  updates['users/' + userId + '/shoppingList/'] = postData;
+  console.log('updates: ', updates);
+  return update(ref(db), updates);
 }
 
 
@@ -98,4 +111,7 @@ signOut(auth).then(() => {
 }
 
 
-export { onBtnInSelect, onBtnUpSelect, firebaseConfig, dataUser,authStates , writeUserData,readUserData,onLogout};
+
+
+
+export { onBtnInSelect, onBtnUpSelect, firebaseConfig, dataUser,authStates , writeUserData,readUserData,updateUserData,onLogout};

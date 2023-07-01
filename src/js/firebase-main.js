@@ -115,7 +115,7 @@ function startLoadingSets() {
       readUserData(dataUser.userId);
     }
   }
-  catch {
+  catch(e) {
     return;
   }
 
@@ -132,7 +132,7 @@ function startLoadingSets() {
       readUserData(dataUser.userId);
     }
   }
-  catch {
+  catch(e) {
        return;
   }
 }
