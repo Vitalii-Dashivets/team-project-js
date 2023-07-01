@@ -5,19 +5,13 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  setPersistence,
+  browserSessionPersistence,
 } from 'firebase/auth';
-import { signOut } from 'firebase/auth';
-// test update + push, update
-import {
-  getDatabase,
-  ref,
-  set,
-  child,
-  get,
-  push,
-  update,
-} from 'firebase/database';
-import { setPersistence, browserSessionPersistence } from 'firebase/auth';
+// import { signOut } from 'firebase/auth';
+import { getDatabase, ref, set, child, get, update } from 'firebase/database';
+// import { setPersistence, browserSessionPersistence } from 'firebase/auth';
 
 const btnUp = document.querySelector('button[data-action=signup]');
 const btnIn = document.querySelector('button[data-action=signin]');
@@ -88,9 +82,6 @@ function onFormSubmit(event) {
   dataUser.password = form.password.value;
   dataUser.authType = statusAuth;
   dataUser.data = [2, 4, 5, 7, 8, 9];
-  // console.log(form.email.value);
-  // console.log(form.password.value);
-  // console.log(dataUser);
   form.name.value = '';
   form.email.value = '';
   form.password.value = '';
@@ -174,31 +165,6 @@ function updateUserData({ array, userId }) {
   console.log('updates: ', updates);
   return update(ref(db), updates);
 }
-
-//  test update // A post entry
-function writeNewPost({ uid, username }) {
-  const db = getDatabase();
-
-  // A post entry.
-  const postData = {
-    author: username,
-    uid: uid,
-    body: 'body',
-    title: 'title',
-    authorPic: 'picture',
-  };
-  // Get a key for a new Post.
-  const newPostKey = push(child(ref(db), 'posts')).key;
-  console.log('newPostKey', newPostKey);
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  const updates = {};
-  // updates['/posts/' + newPostKey] = postData;
-  // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-  updates['users/' + uid + '/data/'] = postData;
-  //
-  return update(ref(db), updates);
-}
-//  test update
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
