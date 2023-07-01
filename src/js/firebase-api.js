@@ -1,6 +1,9 @@
 import {  refsBtn } from "./firebase-main";
 import { getDatabase, ref, set, child, get, update } from 'firebase/database'; 
-import { getAuth,signOut} from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
+
+
+
 const dataUser = {
   userId: '',
   username: '',
@@ -104,7 +107,7 @@ function updateUserData({ shoppingList, userId }) {
 function onLogout() {
       const auth = getAuth();
 signOut(auth).then(() => {
-  
+  authStates.status = false;
 }).catch((error) => {
   
 });

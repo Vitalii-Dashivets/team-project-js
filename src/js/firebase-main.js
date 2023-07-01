@@ -7,6 +7,8 @@ import {
 } from 'firebase/auth';
 
 import { onBtnInSelect, onBtnUpSelect, firebaseConfig, dataUser, authStates, writeUserData,readUserData,onLogout } from './firebase-api.js';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 
 const refsBtn = {
      btnUp : document.querySelector('button[data-action=signup]'),
@@ -14,7 +16,7 @@ const refsBtn = {
      btnLogout : document.querySelector('button[data-action=logout]'),
      form : document.querySelector('.form'),
      userP: document.querySelector('.user'),
-    formBtn: document.querySelector("#formBtn"),
+     formBtn: document.querySelector("#formBtn"),
      
 }
 
@@ -26,7 +28,24 @@ refsBtn.btnUp.addEventListener('click', onBtnUpSelect);
 refsBtn.btnIn.addEventListener('click', onBtnInSelect);
 refsBtn.btnLogout.addEventListener('click', onLogout);
 
-
+Notify.init({
+    width: '300px',
+    fontSize: '18px',
+    position: 'center-top',
+    timeout: '3000',
+    messageMaxLength: 150,
+    distance: '20px',
+    showOnlyTheLastOne: true,
+    warning: {
+        background: 'rgba(190, 194, 79, 1)',
+        textColor: '#fff',
+        childClassName: 'notiflix-notify-warning',
+        notiflixIconColor: 'rgba(0,0,0,0.2)',
+        fontAwesomeClassName: 'fas fa-exclamation-circle',
+        fontAwesomeIconColor: 'rgba(0,0,0,1)',
+        backOverlayColor: 'rgba(238,191,49,0.2)',
+    },
+});
 
 
 function onFormSubmit(event) {
@@ -52,12 +71,12 @@ function onFormSubmit(event) {
         
         const user = userCredential.user;
         dataUser.userId = user.uid;
-         
+        writeUserData(dataUser);
       })
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        Notify.warning(errorMessage);
          });
   } else if (authStates.type === 'signin') {
       
@@ -66,19 +85,14 @@ function onFormSubmit(event) {
        
         const user = userCredential.user;
         dataUser.userId = user.uid;
-       
-
-        setTimeout(() => {
-          writeUserData(dataUser);
-          readUserData(dataUser.userId);
-        }, 3000);
+        readUserData();    
         
         
       })
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);
+        Notify.warning(errorMessage);
       });
   }
 
