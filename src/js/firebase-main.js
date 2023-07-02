@@ -114,7 +114,7 @@ setPersistence(auth, browserSessionPersistence)
   });
 
 
-function startLoadingSets() {
+async function startLoadingSets() {
   try {
     
     const storageData = sessionStorage.getItem('firebase:authUser:AIzaSyAWL009d3fIg7FDNeFa1MpQ8vcCju1UWEQ:[DEFAULT]');
