@@ -1,4 +1,4 @@
-import {  refsBtn } from "./firebase-main";
+import {  refsBtn} from "./firebase-main";
 import { getDatabase, ref, set, child, get, update } from 'firebase/database'; 
 import { getAuth, signOut } from 'firebase/auth';
 
@@ -111,6 +111,7 @@ async function onLogout() {
       const auth = getAuth();
 signOut(auth).then(() => {
   authStates.status = false;
+  // disabledEnabledFormBtn(authStates);
 }).catch((error) => {
   
 });

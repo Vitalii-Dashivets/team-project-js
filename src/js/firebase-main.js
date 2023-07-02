@@ -72,6 +72,8 @@ function onFormSubmit(event) {
         const user = userCredential.user;
         dataUser.userId = user.uid;
         writeUserData(dataUser);
+        authStates.status = true;
+        // disabledEnabledFormBtn(authStates);
       })
       .catch(error => {
         const errorCode = error.code;
@@ -86,7 +88,9 @@ function onFormSubmit(event) {
         const user = userCredential.user;
         dataUser.userId = user.uid;
         readUserData();    
+        authStates.status = true;
         
+         
         
       })
       .catch(error => {
@@ -120,16 +124,20 @@ async function startLoadingSets() {
     const storageData = sessionStorage.getItem('firebase:authUser:AIzaSyAWL009d3fIg7FDNeFa1MpQ8vcCju1UWEQ:[DEFAULT]');
 
     if (storageData === null) {
+      authStates.status = false;
+      // disabledEnabledFormBtn(authStates);
       return;
     }
     else {
       const parsedDataSS = JSON.parse(storageData);
       dataUser.userId = parsedDataSS.uid;
       authStates.status = true;
+      // disabledEnabledFormBtn(authStates);
       readUserData(dataUser.userId);
     }
   }
-  catch(e) {
+  catch (e) {
+    console.log('тут ошибка');
     return;
   }
 
@@ -137,6 +145,8 @@ async function startLoadingSets() {
     const localStorageData = localStorage.getItem('firebase:authUser:AIzaSyAWL009d3fIg7FDNeFa1MpQ8vcCju1UWEQ:[DEFAULT]');
     
     if (localStorageData === null) {
+      authStates.status = false;
+      // disabledEnabledFormBtn(authStates);
       return;
     }
     else {
@@ -144,6 +154,7 @@ async function startLoadingSets() {
       dataUser.userId = parsedDataLS.uid;
       authStates.status = true; 
       readUserData(dataUser.userId);
+      // disabledEnabledFormBtn(authStates);
     }
   }
   catch(e) {
@@ -154,5 +165,5 @@ async function startLoadingSets() {
 startLoadingSets();
 
 
-  
+
 export {  refsBtn};
