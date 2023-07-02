@@ -6,7 +6,7 @@ import { getAuth, signOut } from 'firebase/auth';
 
 const dataUser = {
   userId: '',
-  username: '',
+  username: 'user',
   email: '',
   shoppingList: '',
  
