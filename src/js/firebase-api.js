@@ -95,7 +95,7 @@ async function readUserData(userId) {
 
 async function updateUserData({ shoppingList, userId }) {
   const db = getDatabase();
-  if (shoppingList === []) {
+  if (shoppingList.length===0) {
     shoppingList = '';
   }
   const postData = shoppingList;
