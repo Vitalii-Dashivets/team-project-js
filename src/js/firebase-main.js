@@ -15,7 +15,7 @@ const refsBtn = {
      btnIn : document.querySelector('button[data-action=signin]'),
      btnLogout : document.querySelector('button[data-action=logout]'),
      form : document.querySelector('.form'),
-     userP: document.querySelector('.user'),
+     
      formBtn: document.querySelector("#formBtn"),
      
 }
