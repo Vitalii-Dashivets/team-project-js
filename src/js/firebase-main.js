@@ -14,9 +14,9 @@ const refsBtn = {
      btnUp : document.querySelector('button[data-action=signup]'),
      btnIn : document.querySelector('button[data-action=signin]'),
      btnLogout : document.querySelector('button[data-action=logout]'),
-     form : document.querySelector('.form'),
+     form : document.querySelector('.modal-form'),
      
-     formBtn: document.querySelector("#formBtn"),
+     formBtn: document.querySelector(".btn-modal-submit"),
      
 }
 
