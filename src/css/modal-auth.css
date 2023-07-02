@@ -1,4 +1,43 @@
-.visually-hidden {
+/* -- Various -- */
+:root {
+    /* common color */
+
+    /* color-text */
+    --color-modal-icon: #000;
+    --color-modal-icon-close: #fff;
+    --color-modal-input: #8E8F99;
+    --color-modal-input-focus: #000;
+    --color-modal-comment: rgba(117, 117, 117, 0.5);
+    --color-modal-check: ##757575;
+    --color-modal-check-ref: #4D5AE5;
+    --color-modal-check-icon: #F4F4FD;
+    --color-btn-modal-submit: #fff;
+
+    /* background-color */
+
+    --bg-color-backdrop: rgba(46, 47, 66, 0.4);
+    --bg-color-modal: #FCFCFC;
+    --bg-color-btn-modal: #E7E9FC;
+    --bg-color-btn-modal-active: #404BBF;
+    --bg-color-btn-modal-submit: #4D5AE5;
+    --bg-color-btn-modal-submit-hover: #404BBF;
+
+    /* border-color */
+
+    --brd-color-modal-input: rgba(33, 33, 33, 0.2);
+    --brd-color-modal-input-focus: #4D5AE5;
+
+    /* fonts */
+
+
+    /* transition, animation */
+    --transition-property: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+
+/* .visually-hidden {
     position: absolute;
     white-space: nowrap;
     width: 1px;
@@ -9,7 +48,7 @@
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     margin: -1px;
-}
+} */
 
 /* ------------------------------------- Modal windows -- */
 
@@ -36,9 +75,10 @@
     /* ??? */
 }
 
-.modal {
+.modal-auth {
     position: absolute;
-    top: 24px;
+    /* top: 48px; */
+    top: 50%;
     left: 50%;
     max-width: 392px;
     width: calc(100% - 32px);
@@ -54,40 +94,40 @@
     transition: transform var(--transition-property);
 }
 
-@media screen and (min-width: 768px) and (orientation: portrait) {
-    .modal {
+/* @media screen and (min-width: 768px) and (orientation: portrait) {
+    .modal-auth {
         top: 50%;
         transform: translate(-50%, -50%) scaleY(1) skew(0);
     }
-}
+} */
 
-@media screen and (min-width: 1200px) {
-    .modal {
+/* @media screen and (min-width: 1200px) {
+    .modal-auth {
         top: 50%;
         transform: translate(-50%, -50%) scaleY(1) skew(0);
     }
-}
+} */
 
-.backdrop.is-hidden .modal {
+.backdrop.is-hidden .modal-auth {
     transform: translate(-50%, -50%) scaleY(0) skew(-90deg);
 }
 
-@media screen and (min-width: 768px) {
-    .modal {
+/* @media screen and (min-width: 768px) {
+    .modal-auth {
         max-width: 408px;
         width: calc(100% - 32px);
         padding: 72px 25px 24px 23px;
     }
-}
+} */
 
-@media screen and (min-width: 1200px) {
-    .modal {
+/* @media screen and (min-width: 1200px) {
+    .modal-auth {
         max-width: 408px;
         width: calc(100% - 30px);
         min-height: 584px;
         padding: 72px 24px 24px;
     }
-}
+} */
 
 .btn-modal-close {
     --size: 24px;
@@ -142,12 +182,12 @@
     color: var(--color-modal-input);
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
     .input-text {
         line-height: calc(14 / 12);
         letter-spacing: 0.01em;
     }
-}
+} */
 
 .modal-field {
     display: block;
