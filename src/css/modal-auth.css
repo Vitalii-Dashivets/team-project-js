@@ -166,12 +166,12 @@
     fill: currentColor;
 }
 
-.modal-title {
+/* .modal-title {
     margin-bottom: 16px;
     font-weight: 500;
     letter-spacing: 0.02em;
     text-align: center;
-}
+} */
 
 .input-text {
     display: block;
@@ -232,7 +232,7 @@
     fill: var(--bg-color-btn-modal-active);
 }
 
-.modal-field-textarea {
+/* .modal-field-textarea {
     margin-bottom: 16px;
     display: block;
 }
@@ -266,9 +266,9 @@
 
 .modal-field-checkbox {
     margin-bottom: 24px;
-}
+} */
 
-.checkbox-text {
+/* .checkbox-text {
     display: flex;
     align-items: center;
     position: relative;
@@ -281,9 +281,9 @@
 .checkbox-text a {
     margin-left: 0.4em;
     color: var(--color-modal-check-ref);
-}
+} */
 
-.modal-icon-check {
+/* .modal-icon-check {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -305,7 +305,7 @@
     background-color: var(--bg-color-btn-modal-active);
     border-color: var(--bg-color-btn-modal-active);
     fill: var(--color-modal-check-icon);
-}
+} */
 
 .btn-modal-submit {
     display: block;
