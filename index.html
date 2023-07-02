@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla App Template</title>
     
-    <script type="module" crossorigin src="/team-project-js/assets/index-4342a80a.js"></script>
-    <link rel="stylesheet" href="/team-project-js/assets/index-34736b1e.css">
+    <script type="module" crossorigin src="/team-project-js/assets/index-527e65f9.js"></script>
+    <link rel="stylesheet" href="/team-project-js/assets/index-9c4dd4c2.css">
   </head>
   <body>
     <header class="header container">
@@ -64,56 +64,52 @@
     </main>
     <!-- Loads the specified .html file -->
         <!-- Modal Window -->
-<div class="backdrop is-hidden" data-modal>
-  <div class="modal-auth">
-    <button class="btn-modal-close" data-modal-close type="button">
-      <svg class="modal-close-icon">
-        <use href="/team-project-js/assets/icons-igor-c1c8c237.svg#close"></use>
-      </svg>
-    </button>
-    <!-- <p class="modal-title">Leave your contacts and we will call you back</p> -->
-    <form class="modal-form">
-      <label class="modal-field"
-        ><span class="input-text">Name</span>
-        <span class="modal-field-input">
-          <input
-            class="modal-input modal-input-focus"
-            type="text"
-            name="name"
-            autofocus
-          />
-          <svg class="modal-icon" width="18" height="18">
-            <use href="/team-project-js/assets/icons-igor-c1c8c237.svg#person"></use>
-          </svg>
-        </span>
-      </label>
-      <label class="modal-field"
-        ><span class="input-text">Email</span>
-        <span class="modal-field-input">
-          <input
-            class="modal-input modal-input-focus"
-            type="text"
-            name="email"
-          />
-          <svg class="modal-icon" width="18" height="24">
-            <use href="/team-project-js/assets/icons-igor-c1c8c237.svg#phone"></use>
-          </svg>
-        </span>
-      </label>
-      <label class="modal-field"
-        ><span class="input-text">Password</span>
-        <span class="modal-field-input">
-          <input
-            class="modal-input modal-input-focus"
-            type="text"
-            name="password"
-          />
-          <svg class="modal-icon" width="18" height="24">
-            <use href="/team-project-js/assets/icons-igor-c1c8c237.svg#email"></use>
-          </svg>
-        </span>
-      </label>
-      <!-- <label class="modal-field-textarea"
+<div class="overlay"></div>
+<div class="modal modal-auth" data-modal>
+  <button class="btn-modal-close" data-modal-close type="button">
+    <svg class="modal-close-icon">
+      <use href="/team-project-js/assets/icons-igor-c1c8c237.svg#close"></use>
+    </svg>
+  </button>
+  <!-- <p class="modal-title">Leave your contacts and we will call you back</p> -->
+  <form class="modal-form">
+    <label class="modal-field"
+      ><span class="input-text">Name</span>
+      <span class="modal-field-input">
+        <input
+          class="modal-input modal-input-focus"
+          type="text"
+          name="name"
+          autofocus
+        />
+        <svg class="modal-icon" width="18" height="18">
+          <use href="/team-project-js/assets/icons-igor-c1c8c237.svg#person"></use>
+        </svg>
+      </span>
+    </label>
+    <label class="modal-field"
+      ><span class="input-text">Email</span>
+      <span class="modal-field-input">
+        <input class="modal-input modal-input-focus" type="text" name="email" />
+        <svg class="modal-icon" width="18" height="24">
+          <use href="/team-project-js/assets/icons-igor-c1c8c237.svg#phone"></use>
+        </svg>
+      </span>
+    </label>
+    <label class="modal-field"
+      ><span class="input-text">Password</span>
+      <span class="modal-field-input">
+        <input
+          class="modal-input modal-input-focus"
+          type="text"
+          name="password"
+        />
+        <svg class="modal-icon" width="18" height="24">
+          <use href="/team-project-js/assets/icons-igor-c1c8c237.svg#email"></use>
+        </svg>
+      </span>
+    </label>
+    <!-- <label class="modal-field-textarea"
         ><span class="input-text">Comment</span>
         <textarea
           class="modal-field-comment modal-input-focus"
@@ -137,11 +133,10 @@
           <a href="">Privacy Policy </a></span
         >
       </label> -->
-      <button type="button" data-action="signup">SIGN UP</button>
-      <button type="button" data-action="signin">SIGN IN</button>
-      <button class="btn-modal-submit" type="submit">SIGN UP</button>
-    </form>
-  </div>
+    <button type="button" data-action="signup">SIGN UP</button>
+    <button type="button" data-action="signin">SIGN IN</button>
+    <button class="btn-modal-submit" type="submit">SIGN UP</button>
+  </form>
 </div>
 
     
