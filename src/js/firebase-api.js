@@ -55,7 +55,7 @@ function onBtnInSelect() {
 }
 
 
-function writeUserData({ userId, username, email,  shoppingList }) {
+async function writeUserData({ userId, username, email,  shoppingList }) {
   const db = getDatabase();
   set(ref(db, 'users/' + userId), {
     username: username,
@@ -66,7 +66,7 @@ function writeUserData({ userId, username, email,  shoppingList }) {
 }
 
 
-function readUserData(userId) {
+async function readUserData(userId) {
   const dbRef = ref(getDatabase());
   get(child(dbRef, `users/${userId}`))
     .then(snapshot => {
@@ -93,7 +93,7 @@ function readUserData(userId) {
 }
 
 
-function updateUserData({ shoppingList, userId }) {
+async function updateUserData({ shoppingList, userId }) {
   const db = getDatabase();
   const postData = shoppingList;
   const updates = {};
@@ -104,7 +104,7 @@ function updateUserData({ shoppingList, userId }) {
 
 
 
-function onLogout() {
+async function onLogout() {
       const auth = getAuth();
 signOut(auth).then(() => {
   authStates.status = false;
